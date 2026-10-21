@@ -6041,6 +6041,10 @@
               "block_id"
             ],
             "description": "Where to place the new database block within the parent page. Defaults to appending at the end."
+          },
+          "show_data_source_title": {
+            "type": "boolean",
+            "description": "Whether to show the data source title above the new linked database's views. Defaults to true."
           }
         },
         "required": [
@@ -7329,6 +7333,10 @@
             "type": "boolean",
             "description": "Whether the database is locked from editing in the Notion app UI."
           },
+          "show_data_source_title": {
+            "type": "boolean",
+            "description": "Whether the data source title is shown above the database's views, matching the Show data source title toggle in the Notion app. Full-page databases with one data source don't show this title even when this is `true`."
+          },
           "created_time": {
             "type": "string",
             "format": "date-time",
@@ -7396,6 +7404,7 @@
           "database_type",
           "in_trash",
           "is_locked",
+          "show_data_source_title",
           "created_time",
           "last_edited_time",
           "data_sources",
@@ -30752,6 +30761,10 @@
                   "is_locked": {
                     "type": "boolean",
                     "description": "Whether the database should be locked from editing in the Notion app UI. If not provided, the locked state will not be updated."
+                  },
+                  "show_data_source_title": {
+                    "type": "boolean",
+                    "description": "Whether to show the data source title above the database's views. Matches the Show data source title toggle in the Notion app. If not provided, the setting will not be updated."
                   }
                 }
               }
@@ -31022,6 +31035,10 @@
                   "cover": {
                     "$ref": "#/components/schemas/pageCoverRequest",
                     "description": "The cover image for the database."
+                  },
+                  "show_data_source_title": {
+                    "type": "boolean",
+                    "description": "Whether to show the data source title above the database's views. Matches the Show data source title toggle in the Notion app. Defaults to true. Full-page databases with one data source don't show this title."
                   }
                 },
                 "required": [

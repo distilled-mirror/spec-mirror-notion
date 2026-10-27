@@ -7562,12 +7562,25 @@
           },
           "data_source_id": {
             "$ref": "#/components/schemas/idResponse"
+          },
+          "limit": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The maximum number of pages each page can relate to, or null when there is no limit. Read-only."
           }
         },
         "additionalProperties": false,
         "required": [
           "database_id",
-          "data_source_id"
+          "data_source_id",
+          "limit"
         ]
       },
       "databaseSchemaUpdatedWebhookPayload": {
@@ -20703,6 +20716,9 @@
       "transcriptionBlockResponse": {
         "type": "object",
         "properties": {
+          "is_full_page": {
+            "type": "boolean"
+          },
           "title": {
             "type": "array",
             "items": {
@@ -20722,7 +20738,10 @@
           "recording": {
             "$ref": "#/components/schemas/transcriptionRecordingResponse"
           }
-        }
+        },
+        "required": [
+          "is_full_page"
+        ]
       },
       "transcriptionCalendarEventResponse": {
         "type": "object",
@@ -20734,6 +20753,9 @@
           "end_time": {
             "type": "string",
             "format": "date-time"
+          },
+          "event_id": {
+            "type": "string"
           },
           "attendees": {
             "type": "array",
@@ -36176,6 +36198,10 @@
                         "meeting_notes": {
                           "type": "object",
                           "properties": {
+                            "is_full_page": {
+                              "type": "boolean",
+                              "description": "Whether this is a full-page meeting note."
+                            },
                             "title": {
                               "type": "array",
                               "items": {
@@ -36226,6 +36252,10 @@
                                   "type": "string",
                                   "description": "ISO-8601 end time of the calendar event."
                                 },
+                                "event_id": {
+                                  "type": "string",
+                                  "description": "ID of the calendar event, as returned by the calendar tools."
+                                },
                                 "attendees": {
                                   "type": "array",
                                   "items": {
@@ -36259,6 +36289,9 @@
                             }
                           },
                           "additionalProperties": false,
+                          "required": [
+                            "is_full_page"
+                          ],
                           "description": "Meeting note content fields."
                         },
                         "created_time": {
@@ -36575,6 +36608,10 @@
                           "meeting_notes": {
                             "type": "object",
                             "properties": {
+                              "is_full_page": {
+                                "type": "boolean",
+                                "description": "Whether this is a full-page meeting note."
+                              },
                               "title": {
                                 "type": "array",
                                 "items": {
@@ -36625,6 +36662,10 @@
                                     "type": "string",
                                     "description": "ISO-8601 end time of the calendar event."
                                   },
+                                  "event_id": {
+                                    "type": "string",
+                                    "description": "ID of the calendar event, as returned by the calendar tools."
+                                  },
                                   "attendees": {
                                     "type": "array",
                                     "items": {
@@ -36658,6 +36699,9 @@
                               }
                             },
                             "additionalProperties": false,
+                            "required": [
+                              "is_full_page"
+                            ],
                             "description": "Meeting note content fields."
                           },
                           "created_time": {
